@@ -83,5 +83,86 @@
     });
   }
 
+  function wireGalleryAutoScroll() {
+    var marquees = document.querySelectorAll('.gallery-marquee');
+    if (!marquees.length) return;
+
+    marquees.forEach(function (marquee) {
+      var track = marquee.querySelector('.gallery-track');
+      if (!track) return;
+
+      var pauseUntil = 0;
+      var speed = 0.35;
+      var isDown = false;
+      var startX = 0;
+      var startScroll = 0;
+      var ticking = false;
+
+      function nowMs() {
+        return Date.now();
+      }
+
+      function pauseAuto(ms) {
+        pauseUntil = nowMs() + ms;
+      }
+
+      function step() {
+        if (nowMs() >= pauseUntil && !isDown) {
+          marquee.scrollLeft += speed;
+          var half = (track.scrollWidth - marquee.clientWidth) / 2;
+          if (half > 0 && marquee.scrollLeft >= half) {
+            marquee.scrollLeft = 0;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      marquee.addEventListener('wheel', function (e) {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          marquee.scrollLeft += e.deltaY;
+          e.preventDefault();
+        }
+        pauseAuto(1800);
+      }, { passive: false });
+
+      marquee.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          ticking = false;
+          pauseAuto(1200);
+        });
+      });
+
+      marquee.addEventListener('pointerdown', function (e) {
+        isDown = true;
+        marquee.style.cursor = 'grabbing';
+        startX = e.clientX;
+        startScroll = marquee.scrollLeft;
+        pauseAuto(2000);
+      });
+
+      marquee.addEventListener('pointermove', function (e) {
+        if (!isDown) return;
+        var dx = e.clientX - startX;
+        marquee.scrollLeft = startScroll - dx;
+      });
+
+      function endDrag() {
+        if (!isDown) return;
+        isDown = false;
+        marquee.style.cursor = 'grab';
+        pauseAuto(1500);
+      }
+
+      marquee.addEventListener('pointerup', endDrag);
+      marquee.addEventListener('pointercancel', endDrag);
+      marquee.addEventListener('pointerleave', endDrag);
+
+      requestAnimationFrame(step);
+    });
+  }
+
   wireSearchInput();
+  wireGalleryAutoScroll();
 })();

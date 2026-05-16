@@ -123,14 +123,17 @@ h2 { margin: 0 0 1.5em; font-size: clamp(30px, 3.1vw, 44px); line-height: 1.1; }
   font-size: 18px;
 }
 .gallery-marquee {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   border-radius: 10px;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 .gallery-track {
   display: flex;
   gap: 14px;
   width: max-content;
-  animation: service-scroll 28s linear infinite;
 }
 .gallery-track img {
   width: 320px;
@@ -139,11 +142,6 @@ h2 { margin: 0 0 1.5em; font-size: clamp(30px, 3.1vw, 44px); line-height: 1.1; }
   border-radius: 10px;
   flex: 0 0 auto;
 }
-@keyframes service-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @media (max-width: 960px) {
   .service-hero-grid {
     grid-template-columns: 1fr;
