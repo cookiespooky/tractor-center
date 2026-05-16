@@ -87,8 +87,8 @@
     var titles = document.querySelectorAll('.service-hero h1');
     if (!titles.length) return;
     titles.forEach(function (el) {
-      var max = 72;
-      var min = 32;
+      var max = 52;
+      var min = 36;
       var size = max;
       el.style.fontSize = size + 'px';
       el.style.overflowWrap = 'normal';
