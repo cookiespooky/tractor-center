@@ -5,7 +5,7 @@ site:
   description: "Ремонт турбин, двигателей, ТНВД и форсунок"
   default_og_image: ""
   media_base_url: "https://cookiespooky.github.io/tractor-center/media/"
-  host: 127.0.0.1
+  host: cookiespooky.github.io
 
 settings:
   hero_background: "/media/site/hero-bg.jpg"
