@@ -92,11 +92,12 @@
       if (!track) return;
 
       var pauseUntil = 0;
-      var speed = 0.35;
+      var speedPxPerSec = 90;
       var isDown = false;
       var startX = 0;
       var startScroll = 0;
       var ticking = false;
+      var lastTs = 0;
 
       function nowMs() {
         return Date.now();
@@ -106,9 +107,12 @@
         pauseUntil = nowMs() + ms;
       }
 
-      function step() {
+      function step(ts) {
+        if (!lastTs) lastTs = ts;
+        var dt = ts - lastTs;
+        lastTs = ts;
         if (nowMs() >= pauseUntil && !isDown) {
-          marquee.scrollLeft += speed;
+          marquee.scrollLeft += (speedPxPerSec * dt) / 1000;
           var half = (track.scrollWidth - marquee.clientWidth) / 2;
           if (half > 0 && marquee.scrollLeft >= half) {
             marquee.scrollLeft = 0;

@@ -128,8 +128,9 @@ h2 { margin: 0 0 1.5em; font-size: clamp(30px, 3.1vw, 44px); line-height: 1.1; }
   border-radius: 10px;
   cursor: grab;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
+.gallery-marquee::-webkit-scrollbar { display: none; }
 .gallery-track {
   display: flex;
   gap: 14px;
