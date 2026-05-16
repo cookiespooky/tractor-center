@@ -14,8 +14,8 @@ settings:
 runtime:
   mode: "prod"
   dev:
-    base_url: "http://127.0.0.1:8080/"
-    media_base_url: "http://127.0.0.1:8080/media/"
+    base_url: "https://cookiespooky.github.io/tractor-center/"
+    media_base_url: "https://cookiespooky.github.io/tractor-center/media/"
 
 content:
   source: "local"
