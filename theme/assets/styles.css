@@ -59,6 +59,8 @@ h2 { margin: 0 0 1.5em; font-size: clamp(30px, 3.1vw, 44px); line-height: 1.1; }
 .partner-row { display: grid; grid-template-columns: 1fr minmax(0, 460px); gap: 20px; align-items: center; }
 .partner-copy { max-width: 70ch; }
 .partner-copy p { color: var(--muted); line-height: 1.65; }
+.partners-dealer { padding: 0 0 56px; }
+.partner-copy h3 { margin: 0 0 1em; font-size: clamp(24px, 2.2vw, 32px); }
 .partner-logo { display: block; width: min(100%, 360px); height: auto; }
 .partner-certificate {
   display: block;
@@ -79,15 +81,15 @@ h2 { margin: 0 0 1.5em; font-size: clamp(30px, 3.1vw, 44px); line-height: 1.1; }
   align-items: center;
 }
 .partner-logo-card {
-  width: 100px;
-  min-width: 100px;
-  max-width: 100px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
   height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 0;
+  border-radius: 0;
   background: #fff;
   padding: 8px;
 }
